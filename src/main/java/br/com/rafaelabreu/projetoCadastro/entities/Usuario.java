@@ -21,9 +21,9 @@ public class Usuario implements Serializable {
 	private String usuario;
 	private String senha;
 	private String email;
-	private Character genero;
-	private Integer cpf;
-	private Integer cep;
+	private String genero;
+	private String cpf;
+	private String cep;
 	private Integer celular;
 	private Date aniversario;
 	
@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 		
 	}
 
-	public Usuario(Long id, String usuario, String senha, String email, Character genero, Integer cpf, Integer cep,
+	public Usuario(Long id, String usuario, String senha, String email, String genero, String cpf, String cep,
 			Integer celular, Date aniversario) {
 		super();
 		this.id = id;
@@ -77,27 +77,27 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public Character getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Character genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
