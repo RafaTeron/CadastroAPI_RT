@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,24 +22,30 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String usuario;
+	@Column(unique = true)
+	private String login;
+	
+	private String nome;
 	private String senha;
 	private String email;
 	private String genero;
 	private String cpf;
 	private String cep;
 	private Integer celular;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date aniversario;
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(Long id, String usuario, String senha, String email, String genero, String cpf, String cep,
+	public Usuario(Long id, String login, String nome, String senha, String email, String genero, String cpf, String cep,
 			Integer celular, Date aniversario) {
 		super();
 		this.id = id;
-		this.usuario = usuario;
+		this.login = login;
+		this.nome = nome;
 		this.senha = senha;
 		this.email = email;
 		this.genero = genero;
@@ -54,12 +63,20 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSenha() {

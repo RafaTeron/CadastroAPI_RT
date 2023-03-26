@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
@@ -13,7 +14,14 @@ import br.com.rafaelabreu.projetoCadastro.repositories.UsuarioRepository;
 public class UsuarioService {
 	
 	@Autowired
-	private UsuarioRepository repository;
+	private final UsuarioRepository repository;
+	
+	private final PasswordEncoder encoder;
+
+    public UsuarioService(UsuarioRepository repository, PasswordEncoder encoder) {
+        this.repository = repository;
+        this.encoder = encoder;
+    }
 	
 	public List<Usuario> findAll(){
 		return repository.findAll();
@@ -25,6 +33,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario save(Usuario usuario) {
+		usuario.setSenha(encoder.encode(usuario.getSenha()));
 	    return repository.save(usuario);
 	}
 	
@@ -42,7 +51,8 @@ public class UsuarioService {
 		entity.setEmail(obj.getEmail());
 		entity.setGenero(obj.getGenero());
 		entity.setSenha(obj.getSenha());
-		entity.setUsuario(obj.getUsuario());
+		entity.setNome(obj.getNome());
+		entity.setLogin(obj.getLogin());
 	}
 
 	public void deleteById(Long id) {
