@@ -7,13 +7,17 @@ const Igenero = document.querySelector(".genero")
 const Icpf = document.querySelector(".cpf")
 const Icep = document.querySelector(".cep")
 const Icelular = document.querySelector(".celular")
+const Ianiversario = document.querySelector(".aniversario")
 
 function cadastrar(){
 
-    fetch("http://localhost:8080/cadastrar",
+    const aniversario = new Date(Ianiversario.value);
+    const aniversarioFormatado = aniversario.toLocaleDateString('pt-BR');
+
+    fetch("http://localhost:8080/usuarios",
         {
             headers: {
-                'Accept': 'applcation/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method:"POST",
@@ -25,7 +29,8 @@ function cadastrar(){
                 genero: Igenero.value,
                 cpf: Icpf.value,
                 cep: Icep.value,
-                celular: Icelular.value
+                celular: Icelular.value,
+                aniversario: aniversarioFormatado
             })
         })
         .then(function(res) {console.log(res)})
@@ -41,6 +46,7 @@ function limpar() {
     Icpf.value = "";
     Icep.value = "";
     Icelular.value = "";
+    Ianiversario.value = "";
 }
 
 formulario.addEventListener('submit', function(event){
