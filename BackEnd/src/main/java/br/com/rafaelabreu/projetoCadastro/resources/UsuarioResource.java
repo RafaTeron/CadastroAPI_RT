@@ -51,8 +51,8 @@ public class UsuarioResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuario> insert(@RequestBody Usuario pessoa) {
-		Usuario obj = service.save(pessoa);
+	public ResponseEntity<Usuario> insert(@RequestBody Usuario usuario) {
+		Usuario obj = service.save(usuario);
 		return ResponseEntity.ok().body(obj);
 	}
 
@@ -69,8 +69,7 @@ public class UsuarioResource {
 	}
 	
 	@GetMapping("/validarSenha")
-    public ResponseEntity<Boolean> validarSenha(@RequestParam String login,
-                                                @RequestParam String senha) {
+    public ResponseEntity<Boolean> validarSenha(@RequestParam String login, @RequestParam String senha) {
 
         Optional<Usuario> optUsuario = repository.findByLogin(login);
         if (optUsuario.isEmpty()) {
