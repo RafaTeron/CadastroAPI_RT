@@ -15,14 +15,13 @@ public class UsuarioService {
 	
 	@Autowired
 	private final UsuarioRepository repository;
-	
 	private final PasswordEncoder encoder;
 
-    public UsuarioService(UsuarioRepository repository, PasswordEncoder encoder) {
-        this.repository = repository;
-        this.encoder = encoder;
-    }
-	
+	public UsuarioService(UsuarioRepository repository, PasswordEncoder encoder) {
+		this.repository = repository;
+		this.encoder = encoder;
+	}
+
 	public List<Usuario> findAll(){
 		return repository.findAll();
 	}
