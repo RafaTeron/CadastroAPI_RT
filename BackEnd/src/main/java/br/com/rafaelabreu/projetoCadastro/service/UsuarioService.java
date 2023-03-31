@@ -1,4 +1,4 @@
-package br.com.rafaelabreu.projetoCadastro.services;
+package br.com.rafaelabreu.projetoCadastro.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,16 +12,16 @@ import br.com.rafaelabreu.projetoCadastro.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-	
 	@Autowired
 	private final UsuarioRepository repository;
+	
 	private final PasswordEncoder encoder;
 
-	public UsuarioService(UsuarioRepository repository, PasswordEncoder encoder) {
-		this.repository = repository;
-		this.encoder = encoder;
-	}
-
+    public UsuarioService(UsuarioRepository repository, PasswordEncoder encoder) {
+        this.repository = repository;
+        this.encoder = encoder;
+    }
+	
 	public List<Usuario> findAll(){
 		return repository.findAll();
 	}
@@ -37,7 +37,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario update(Long id, Usuario obj) {
-	    Usuario entity = repository.getReferenceById(id);
+	    Usuario entity = repository.getById(id);
 	    updateData(entity, obj);
 	    return repository.save(entity);
 	}
@@ -57,5 +57,4 @@ public class UsuarioService {
 	public void deleteById(Long id) {
 	    repository.deleteById(id);
 	}
-
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
 import br.com.rafaelabreu.projetoCadastro.repositories.UsuarioRepository;
-import br.com.rafaelabreu.projetoCadastro.services.UsuarioService;
+import br.com.rafaelabreu.projetoCadastro.service.UsuarioService;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping(value = "/usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioResource {
-	
+
 	@Autowired
 	private UsuarioService service;
 	@Autowired
@@ -69,9 +67,10 @@ public class UsuarioResource {
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
-	
-	@GetMapping("/validarSenha")
-    public ResponseEntity<Boolean> validarSenha(@RequestParam String login, @RequestParam String senha) {
+
+    @GetMapping("/validarSenha")
+    public ResponseEntity<Boolean> validarSenha(@RequestParam String login,
+                                                @RequestParam String senha) {
 
         Optional<Usuario> optUsuario = repository.findByLogin(login);
         if (optUsuario.isEmpty()) {
@@ -83,7 +82,5 @@ public class UsuarioResource {
 
         HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
         return ResponseEntity.status(status).body(valid);
-
     }
-
 }
