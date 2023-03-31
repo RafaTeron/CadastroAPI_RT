@@ -1,4 +1,4 @@
-package br.com.rafaelabreu.projetoCadastro.services;
+package br.com.rafaelabreu.projetoCadastro.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,6 @@ import br.com.rafaelabreu.projetoCadastro.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-	
 	@Autowired
 	private final UsuarioRepository repository;
 	
@@ -38,7 +37,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario update(Long id, Usuario obj) {
-	    Usuario entity = repository.getReferenceById(id);
+	    Usuario entity = repository.getById(id);
 	    updateData(entity, obj);
 	    return repository.save(entity);
 	}
@@ -58,5 +57,4 @@ public class UsuarioService {
 	public void deleteById(Long id) {
 	    repository.deleteById(id);
 	}
-
 }

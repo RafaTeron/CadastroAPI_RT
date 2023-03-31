@@ -8,6 +8,6 @@ import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
-	 public Optional<Usuario> findByLogin(String login);
+	public Optional<Usuario> findByLogin(String login);
 
 }
