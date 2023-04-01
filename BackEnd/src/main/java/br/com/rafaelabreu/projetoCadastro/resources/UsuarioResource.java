@@ -27,18 +27,17 @@ public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService service;
-	@Autowired
-	private UsuarioRepository repository;
+	
+	private final UsuarioRepository repository;
 	
 	private final PasswordEncoder encoder;
 
-	public UsuarioResource(UsuarioService service, UsuarioRepository repository, PasswordEncoder encoder) {
-		this.service = service;
+	public UsuarioResource(UsuarioRepository repository, PasswordEncoder encoder) {
 		this.repository = repository;
 		this.encoder = encoder;
 	}
 
-	@GetMapping
+	@GetMapping("/listarTodos")
 	public ResponseEntity<List<Usuario>> findAll() {
 		List<Usuario> list = service.findAll();
 		return ResponseEntity.ok().body(list);
@@ -50,7 +49,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping
+	@PostMapping("/salvar")
 	public ResponseEntity<Usuario> insert(@RequestBody Usuario usuario) {
 		Usuario obj = service.save(usuario);
 		return ResponseEntity.ok().body(obj);
