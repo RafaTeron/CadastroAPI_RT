@@ -5,11 +5,13 @@ import java.util.Optional;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import br.com.rafaelabreu.projetoCadastro.data.DetalheUsuarioData;
 import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
 import br.com.rafaelabreu.projetoCadastro.repositories.UsuarioRepository;
 
+@Component
 public class DetalheUsuarioServiceImpl implements UserDetailsService {
 
     private final UsuarioRepository repository;
@@ -19,10 +21,10 @@ public class DetalheUsuarioServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<Usuario> usuario = repository.findByLogin(login);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> usuario = repository.findByLogin(username);
         if (usuario.isEmpty()) {
-            throw new UsernameNotFoundException("Usuário [" + login + "] não encontrado");
+            throw new UsernameNotFoundException("Usuário [" + username + "] não encontrado");
         }
 
         return new DetalheUsuarioData(usuario);

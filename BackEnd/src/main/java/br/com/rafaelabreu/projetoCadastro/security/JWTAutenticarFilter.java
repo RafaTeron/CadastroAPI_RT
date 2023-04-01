@@ -1,23 +1,21 @@
 package br.com.rafaelabreu.projetoCadastro.security;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import br.com.rafaelabreu.projetoCadastro.data.DetalheUsuarioData;
 import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
@@ -25,7 +23,7 @@ import br.com.rafaelabreu.projetoCadastro.entities.Usuario;
 public class JWTAutenticarFilter extends UsernamePasswordAuthenticationFilter {
 
     public static final int TOKEN_EXPIRACAO = 600_000;
-    public static final String TOKEN_SENHA = "058b605e-64ed-4b8f-8a36-c5de71a3d75e";
+    public static final String TOKEN_SENHA = "463408a1-54c9-4307-bb1c-6cced559f5a7";
 
     private final AuthenticationManager authenticationManager;
 
